@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3
 from cs483 import AESHelper
 from cs483 import IO
 from Crypto import Random
