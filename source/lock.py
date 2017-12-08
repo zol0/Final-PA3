@@ -37,7 +37,7 @@ def validateKey(key, msg, casig):
     key = "-k " + key
     msg = " -m " + msg
     casig = " -s " + casig
-    args = shlex.split("./rsa_validate.py "+key+msg+casig)
+    args = shlex.split("source/rsa_validate.py "+key+msg+casig)
     res = subprocess.run(args, stdout=subprocess.PIPE)
     if (res.stdout == b'False\n'):
         print("Unlocking party's public key CANNOT be verified, aborting", file=sys.stderr)
@@ -94,7 +94,7 @@ def encFiles(args):
             input_file = " -i " + name
             out_file = " -o " + name + "-enc"
             arg = key + input_file + out_file
-            arg = shlex.split("./cbc_enc.py " + arg)
+            arg = shlex.split("source/cbc_enc.py " + arg)
             res = subprocess.run(arg)
             os.remove(name)
 
@@ -114,7 +114,7 @@ def tagFiles(args):
             new_name = name[:-4] + "-tag"
             tag_file = " -t " + new_name
             arg = key + msg_file + tag_file
-            arg = shlex.split("./cbcmac_tag.py " + arg)
+            arg = shlex.split("source/cbcmac_tag.py " + arg)
             res = subprocess.run(arg)
 
     os.remove("temp-tag")
