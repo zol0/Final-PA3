@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3
 '''
 Karnauch, Andrey
 CS483 - rsa_validate.py
