@@ -29,7 +29,7 @@ def validateKey(key, msg, casig):
     key = "-k " + key
     msg = " -m " + msg
     casig = " -s " + casig
-    args = shlex.split("./rsa_validate.py "+key+msg+casig)
+    args = shlex.split("source/rsa_validate.py "+key+msg+casig)
     res = subprocess.run(args, stdout=subprocess.PIPE)
     if (res.stdout == b'False\n'):
         print("Locking party's public key CANNOT be verified, aborting", file=sys.stderr)
@@ -72,7 +72,7 @@ def validateManifest(key, args):
     key = "-k " + key
     msg = " -m " + name
     sig = " -s " + namesig
-    arg = shlex.split("./rsa_validate.py "+key+msg+sig)
+    arg = shlex.split("source/rsa_validate.py "+key+msg+sig)
     res = subprocess.run(arg, stdout=subprocess.PIPE)
     if (res.stdout == b'False\n'):
         print("Locking party's signature CANNOT be verified, aborting", file=sys.stderr)
@@ -93,7 +93,7 @@ def validateTags(args):
             name = os.path.join(args.directory, f)
             msg = " -m " + name[:-4] + "-enc"
             tag = " -t " + name
-            arg = shlex.split("./cbcmac_validate.py "+key+msg+tag)
+            arg = shlex.split("source/cbcmac_validate.py "+key+msg+tag)
             res = subprocess.run(arg, stdout=subprocess.PIPE)
             if (res.stdout == b'True\n'):
                 os.remove(name)
@@ -116,7 +116,7 @@ def decFiles(args):
             name = os.path.join(args.directory, f)
             input_file = " -i " + name
             out_file = " -o " + name[:-4]
-            arg = shlex.split("./cbc_dec.py "+key+input_file+out_file)
+            arg = shlex.split("source/cbc_dec.py "+key+input_file+out_file)
             res = subprocess.run(arg)
             os.remove(name)
 
