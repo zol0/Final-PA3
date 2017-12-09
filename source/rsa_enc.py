@@ -65,7 +65,7 @@ Encrypts an element (base10 integer) in Z*_n using RSA PKCS1.5
 @return: the m with appropriate padding, raised to the e -- m^e
 '''
 def enc(nbits, n, key, m):
-    m_enc = pow(m_int, key, n)
+    m_enc = pow(m, key, n)
     return m_enc
 
 
