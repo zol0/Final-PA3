@@ -16,13 +16,7 @@ Decrypts a base10 integer by stripping padding and performing m^d
 '''
 def dec(nbits, n, key, m):
     m_inv = pow(m, key, n)
-    m_dec = m_inv.to_bytes(m_inv.bit_length()//8+1, sys.byteorder)
-
-    strip_amount = 3 + (nbits//2//8)
-    m_stripped = m_dec[strip_amount:]
-    m_stripped = m_stripped.lstrip(b'\x00')
-    m_plain = int.from_bytes(m_stripped, sys.byteorder)
-    return m_plain
+    return m_inv
 
 #Processes input, decrypts message, and prints decrypted message to file
 if __name__ == "__main__":
